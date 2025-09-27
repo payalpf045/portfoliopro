@@ -25,7 +25,6 @@ export default async function FilmPage() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-4xl font-headline font-semibold mb-8">Film</h1>
       <Suspense fallback={<ProjectsGridSkeleton />}>
         <ProjectsGrid projects={filmProjects} />
       </Suspense>
