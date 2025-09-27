@@ -18,11 +18,16 @@ export function Footer() {
               PAYAL
             </span>
             <div className="flex items-center gap-2 text-sm text-muted-foreground mt-1">
-              <Button variant="ghost" size="icon" className="h-6 w-6" onClick={() => setIsLoginOpen(true)}>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="h-6 w-6 hover:bg-transparent"
+                onClick={() => setIsLoginOpen(true)}
+              >
                 <Copyright className="h-4 w-4" />
                 <span className="sr-only">Admin Login</span>
               </Button>
-              <span>© {new Date().getFullYear()}. All Rights Reserved.</span>
+              <span>{new Date().getFullYear()}. All Rights Reserved.</span>
             </div>
           </div>
           <div className="flex items-center gap-2">
