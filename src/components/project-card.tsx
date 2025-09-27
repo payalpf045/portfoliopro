@@ -18,9 +18,9 @@ const categoryIcons: Record<ProjectCategory, React.ReactNode> = {
 export default function ProjectCard({ project }: ProjectCardProps) {
   return (
     <Link href={`/project/${project.id}`} className="group block">
-      <Card className="h-full overflow-hidden transition-all duration-300 ease-in-out group-hover:shadow-lg group-hover:shadow-accent/10 group-hover:-translate-y-1">
+      <Card className="h-full overflow-hidden transition-all duration-300 ease-in-out group-hover:shadow-lg group-hover:shadow-accent/10 group-hover:-translate-y-1 bg-transparent border-none shadow-none">
         <CardHeader className="p-0">
-          <div className="aspect-video overflow-hidden">
+          <div className="aspect-video overflow-hidden rounded-lg">
             <Image
               src={project.thumbnail}
               alt={project.title}
@@ -30,13 +30,15 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             />
           </div>
         </CardHeader>
-        <CardContent className="p-6">
-          <Badge variant="secondary" className="mb-2">
-            {categoryIcons[project.category]}
-            <span className="ml-2">{project.category}</span>
-          </Badge>
-          <CardTitle className="font-headline text-xl mb-2">{project.title}</CardTitle>
-          <CardDescription className="line-clamp-3">{project.description}</CardDescription>
+        <CardContent className="p-4 px-1">
+          <div className="flex justify-between items-center mb-2">
+            <CardTitle className="font-headline text-2xl">{project.title}</CardTitle>
+            <Badge variant="outline" className="flex items-center gap-2 text-xs">
+              {categoryIcons[project.category]}
+              {project.category}
+            </Badge>
+          </div>
+          <CardDescription className="line-clamp-3 text-base text-muted-foreground">{project.description}</CardDescription>
         </CardContent>
       </Card>
     </Link>
