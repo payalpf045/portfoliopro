@@ -4,6 +4,26 @@ import { getProjects } from '@/lib/db';
 import ProjectsTable from '@/components/admin/projects-table';
 import { Button } from '@/components/ui/button';
 import { PlusCircle } from 'lucide-react';
+import { Skeleton } from '@/components/ui/skeleton';
+
+function ProjectsTableSkeleton() {
+  return (
+    <div className="space-y-2">
+      {Array.from({ length: 3 }).map((_, i) => (
+        <div key={i} className="flex items-center space-x-4 p-4 border rounded-lg">
+          <Skeleton className="h-10 w-16 rounded-md" />
+          <div className="flex-1 space-y-1">
+            <Skeleton className="h-4 w-1/2" />
+            <Skeleton className="h-4 w-1/4" />
+          </div>
+          <Skeleton className="h-4 w-24" />
+          <Skeleton className="h-4 w-24" />
+          <Skeleton className="h-8 w-8 rounded-full" />
+        </div>
+      ))}
+    </div>
+  )
+}
 
 export default async function AdminDashboard() {
   const projects = await getProjects();
@@ -20,7 +40,7 @@ export default async function AdminDashboard() {
         </Button>
       </div>
 
-      <Suspense fallback={<div>Loading projects...</div>}>
+      <Suspense fallback={<ProjectsTableSkeleton />}>
         <ProjectsTable projects={projects} />
       </Suspense>
     </div>
