@@ -12,7 +12,7 @@ export function Footer() {
   return (
     <>
       <footer className="border-t border-border/40">
-        <div className="container flex flex-col items-center justify-between gap-4 py-10 md:h-24 md:flex-row md:py-0">
+        <div className="container flex items-center justify-between py-10 md:h-24">
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
             <Button variant="ghost" size="icon" className="h-6 w-6" onClick={() => setIsLoginOpen(true)}>
               <Copyright className="h-4 w-4" />
@@ -20,7 +20,7 @@ export function Footer() {
             </Button>
             <span>© {new Date().getFullYear()} PAYAL. All Rights Reserved.</span>
           </div>
-          <div className="flex items-center gap-4 px-8 md:gap-2 md:px-0">
+          <div className="flex items-center gap-2">
             <Link href="mailto:hello@payal.art" target="_blank" rel="noreferrer">
               <Button variant="ghost" size="icon">
                 <Mail className="h-5 w-5 text-muted-foreground" />
