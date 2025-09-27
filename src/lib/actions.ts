@@ -94,6 +94,9 @@ async function saveFilmProject(formData: FormData) {
 
   const { id, ...data } = validatedFields.data;
   const projectId = id || crypto.randomBytes(8).toString('hex');
+  
+  const youtubeId = data.youtubeVideoId ? data.youtubeVideoId.trimEnd() : '';
+
 
   try {
     const existingProject = id ? await getProjectById(id) : undefined;
@@ -120,6 +123,7 @@ async function saveFilmProject(formData: FormData) {
       id: projectId,
       thumbnail: newThumbnailUrl,
       stills: newStillsUrls,
+      youtubeVideoId: youtubeId,
     };
     
     await dbSaveProject(projectData);
