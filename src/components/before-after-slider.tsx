@@ -70,9 +70,8 @@ export default function BeforeAfterSlider({ beforeImage, afterImage }: BeforeAft
       <Image
         src={beforeImage}
         alt="Before color grading"
-        layout="fill"
-        objectFit="cover"
-        className="pointer-events-none"
+        fill
+        className="object-contain pointer-events-none"
         priority
       />
       <div
@@ -82,9 +81,8 @@ export default function BeforeAfterSlider({ beforeImage, afterImage }: BeforeAft
         <Image
           src={afterImage}
           alt="After color grading"
-          layout="fill"
-          objectFit="cover"
-          className="pointer-events-none"
+          fill
+          className="object-contain pointer-events-none"
           priority
         />
       </div>
