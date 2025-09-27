@@ -1,5 +1,15 @@
 [
   {
+    "title": "Sunside memories",
+    "description": "beachside memories",
+    "date": "2005-01-01",
+    "category": "Color Grading",
+    "id": "fdeaa6419bb52e0b",
+    "beforeImageUrl": "/uploads/9a4ca3c8dd1948cf.png",
+    "afterImageUrl": "/uploads/b34ff88da5bd1306.png",
+    "thumbnail": "/uploads/b34ff88da5bd1306.png"
+  },
+  {
     "id": "ethereal-dreams",
     "title": "Ethereal Dreams",
     "description": "A short film exploring the boundaries between reality and the subconscious. This project utilized dream-like visuals and a non-linear narrative to evoke a sense of wonder.",
@@ -23,15 +33,17 @@
     "afterImageUrl": "https://picsum.photos/seed/105/1280/720"
   },
   {
-    "id": "concrete-jungle",
-    "title": "Concrete Jungle",
-    "description": "A documentary-style film capturing the energy and rhythm of city life over a 24-hour period. Features dynamic camera work and a powerful soundscape.",
+    "title": "Sahara desert Documentary",
+    "description": "documentary on life in shara desert",
+    "date": "2003-01-01",
     "category": "Film",
-    "thumbnail": "https://picsum.photos/seed/106/600/400",
-    "date": "2022-11-05T00:00:00.000Z",
-    "youtubeVideoId": "S-z2tjBCgho",
+    "youtubeVideoId": "zTstuuZZznU",
+    "id": "dfa1fb9e9a5f6b88",
+    "thumbnail": "/uploads/42707b8f681170ee.jpeg",
     "stills": [
-      "https://picsum.photos/seed/107/1280/720"
+      "/uploads/9c5c228d79258f1d.jpg",
+      "/uploads/c6b888337de4cc16.jpg",
+      "/uploads/d658b8c777b7fd64.jpeg"
     ]
   }
 ]
