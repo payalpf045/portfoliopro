@@ -16,19 +16,39 @@ import {
 } from './db';
 import type { Project, PhotographyImage } from './definitions';
 import { generateProjectThumbnail } from '@/ai/flows/generate-project-thumbnail';
+import { storage } from '@/lib/firebase';
+import { ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage';
 
-const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
-const ACCEPTED_IMAGE_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
 
 // --- File Handling Utility ---
 async function saveFile(file: File, uploadDir: string = 'uploads'): Promise<string> {
+  if (!file) {
+    throw new Error('No file provided to save.');
+  }
   const fileBuffer = await file.arrayBuffer();
   const fileExtension = path.extname(file.name);
-  const fileName = `${crypto.randomBytes(8).toString('hex')}${fileExtension}`;
-  const publicDir = path.join(process.cwd(), 'public', uploadDir);
-  await fs.mkdir(publicDir, { recursive: true });
-  await fs.writeFile(path.join(publicDir, fileName), Buffer.from(fileBuffer));
-  return `/${uploadDir}/${fileName}`;
+  const fileName = `${uploadDir}/${crypto.randomBytes(16).toString('hex')}${fileExtension}`;
+  
+  const storageRef = ref(storage, fileName);
+  await uploadBytes(storageRef, fileBuffer, { contentType: file.type });
+  const downloadUrl = await getDownloadURL(storageRef);
+
+  return downloadUrl;
+}
+
+async function deleteFile(fileUrl: string): Promise<void> {
+  if (!fileUrl || !fileUrl.includes('firebasestorage.googleapis.com')) {
+    return; // Not a firebase storage URL, so we can't delete it.
+  }
+  try {
+    const fileRef = ref(storage, fileUrl);
+    await deleteObject(fileRef);
+  } catch (error: any) {
+    // It's okay if the file doesn't exist.
+    if (error.code !== 'storage/object-not-found') {
+      console.error(`Failed to delete file at ${fileUrl}:`, error);
+    }
+  }
 }
 
 // --- Schemas ---
@@ -43,9 +63,10 @@ const baseProjectSchema = z.object({
 
 const fileSchema = z
   .instanceof(File)
-  .refine((file) => file.size <= MAX_FILE_SIZE, `Max file size is 5MB.`)
+  .refine((file) => file.size > 0, 'File is required.')
+  .refine((file) => file.size <= 5 * 1024 * 1024, `Max file size is 5MB.`)
   .refine(
-    (file) => ACCEPTED_IMAGE_TYPES.includes(file.type),
+    (file) => ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'].includes(file.type),
     'Only .jpg, .jpeg, .png and .webp formats are supported.'
   );
 
@@ -95,8 +116,7 @@ async function saveFilmProject(formData: FormData) {
   const { id, ...data } = validatedFields.data;
   const projectId = id || crypto.randomBytes(8).toString('hex');
   
-  const youtubeId = data.youtubeVideoId ? data.youtubeVideoId.trimEnd() : '';
-
+  const youtubeId = data.youtubeVideoId ? data.youtubeVideoId.trim() : '';
 
   try {
     const existingProject = id ? await getProjectById(id) : undefined;
@@ -106,16 +126,28 @@ async function saveFilmProject(formData: FormData) {
     if (thumbnailFile && thumbnailFile.size > 0) {
       const thumbValidation = fileSchema.safeParse(thumbnailFile);
       if (!thumbValidation.success) throw new Error('Thumbnail validation failed');
-      if (existingProject?.thumbnail && !existingProject.thumbnail.startsWith('data:')) {
-        await fs.unlink(path.join(process.cwd(), 'public', existingProject.thumbnail)).catch(() => {});
+      if (existingProject?.thumbnail) {
+        await deleteFile(existingProject.thumbnail);
       }
-      newThumbnailUrl = await saveFile(thumbnailFile);
+      newThumbnailUrl = await saveFile(thumbnailFile, 'project-thumbnails');
+    } else if(newThumbnailUrl.startsWith('data:')) {
+      // Handle AI generated thumbnail
+      const response = await fetch(newThumbnailUrl);
+      const blob = await response.blob();
+      const file = new File([blob], "thumbnail.png", { type: blob.type });
+      if (existingProject?.thumbnail) {
+        await deleteFile(existingProject.thumbnail);
+      }
+      newThumbnailUrl = await saveFile(file, 'project-thumbnails');
     }
     
     const stillFiles = formData.getAll('stills') as File[];
     let newStillsUrls = existingProject?.stills || [];
     if (stillFiles.some(f => f.size > 0)) {
-        newStillsUrls = await Promise.all(stillFiles.map(file => saveFile(file)));
+        if (existingProject?.stills) {
+          await Promise.all(existingProject.stills.map(url => deleteFile(url)));
+        }
+        newStillsUrls = await Promise.all(stillFiles.map(file => saveFile(file, `stills/${projectId}`)));
     }
 
     const projectData: Project = {
@@ -146,7 +178,7 @@ async function saveColorGradingProject(formData: FormData) {
 
     if (!validatedFields.success) {
         return {
-          message: 'Validation failed: ' + validatedFields.error.flatten().fieldErrors,
+          message: 'Validation failed: ' + JSON.stringify(validatedFields.error.flatten().fieldErrors),
           success: false,
         };
     }
@@ -161,18 +193,18 @@ async function saveColorGradingProject(formData: FormData) {
 
         const beforeFile = formData.get('beforeImage') as File;
         if (beforeFile && beforeFile.size > 0) {
-            if (beforeUrl) await fs.unlink(path.join(process.cwd(), 'public', beforeUrl)).catch(() => {});
-            beforeUrl = await saveFile(beforeFile);
+            if (beforeUrl) await deleteFile(beforeUrl);
+            beforeUrl = await saveFile(beforeFile, `color-grading/${projectId}`);
         }
 
         const afterFile = formData.get('afterImage') as File;
         if (afterFile && afterFile.size > 0) {
-            if (afterUrl) await fs.unlink(path.join(process.cwd(), 'public', afterUrl)).catch(() => {});
-            afterUrl = await saveFile(afterFile);
+            if (afterUrl) await deleteFile(afterUrl);
+            afterUrl = await saveFile(afterFile, `color-grading/${projectId}`);
         }
 
-        if (!beforeUrl || !afterUrl) {
-            throw new Error('Before and After images are required for new projects.');
+        if (!id && (!beforeFile || beforeFile.size === 0 || !afterFile || afterFile.size === 0)) {
+          throw new Error('Before and After images are required for new color grading projects.');
         }
 
         const projectData: Project = {
@@ -180,7 +212,7 @@ async function saveColorGradingProject(formData: FormData) {
             id: projectId,
             beforeImageUrl: beforeUrl,
             afterImageUrl: afterUrl,
-            thumbnail: afterUrl, // Use after image as thumbnail
+            thumbnail: afterUrl || beforeUrl, // Use after image as thumbnail
         };
 
         await dbSaveProject(projectData);
@@ -198,20 +230,21 @@ export async function deleteProject(formData: FormData) {
   try {
     const project = await getProjectById(id);
     if(project) {
-        // Delete associated files
+        // Delete associated files from Firebase Storage
         const filesToDelete: string[] = [];
-        if (project.thumbnail && !project.thumbnail.startsWith('data:')) filesToDelete.push(project.thumbnail);
+        if (project.thumbnail) filesToDelete.push(project.thumbnail);
         if (project.beforeImageUrl) filesToDelete.push(project.beforeImageUrl);
         if (project.afterImageUrl) filesToDelete.push(project.afterImageUrl);
         if (project.stills) filesToDelete.push(...project.stills);
 
         for (const fileUrl of filesToDelete) {
-            await fs.unlink(path.join(process.cwd(), 'public', fileUrl)).catch(() => {});
+            await deleteFile(fileUrl);
         }
     }
     await deleteProjectById(id);
   } catch (e) {
     // handle error
+    console.error("Failed to delete project:", e)
   }
   revalidatePath('/admin');
   revalidatePath('/');
@@ -251,11 +284,11 @@ export async function deletePhotographyImage(formData: FormData) {
   try {
     const image = await getPhotographyImageById(id);
     if (image && image.url) {
-      await fs.unlink(path.join(process.cwd(), 'public', image.url)).catch(() => {});
+      await deleteFile(image.url);
     }
     await deletePhotographyImageById(id);
   } catch (e) {
-    // handle error
+    console.error("Failed to delete photography image:", e)
   }
   revalidatePath('/admin/photography');
   revalidatePath('/photography');
