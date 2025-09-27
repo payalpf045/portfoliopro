@@ -1,0 +1,32 @@
+[
+  {
+    "id": "photo-1",
+    "url": "https://picsum.photos/seed/201/800/1200",
+    "title": "Mountain Majesty",
+    "date": "2023-09-10T00:00:00.000Z"
+  },
+  {
+    "id": "photo-2",
+    "url": "https://picsum.photos/seed/202/800/1200",
+    "title": "Silent Gaze",
+    "date": "2023-05-22T00:00:00.000Z"
+  },
+  {
+    "id": "photo-3",
+    "url": "https://picsum.photos/seed/203/1200/800",
+    "title": "Liquid Gold",
+    "date": "2023-07-01T00:00:00.000Z"
+  },
+  {
+    "id": "photo-4",
+    "url": "https://picsum.photos/seed/204/800/1200",
+    "title": "City Veins",
+    "date": "2022-12-18T00:00:00.000Z"
+  },
+  {
+    "id": "photo-5",
+    "url": "https://picsum.photos/seed/205/1200/800",
+    "title": "Verdant Droplet",
+    "date": "2023-04-30T00:00:00.000Z"
+  }
+]

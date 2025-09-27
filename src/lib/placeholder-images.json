@@ -1,3 +1,76 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "film-project-1-thumb",
+      "description": "Thumbnail for a film project titled 'Ethereal Dreams'",
+      "imageUrl": "https://images.unsplash.com/photo-1623489956130-64c5f8e84590?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxldGhlcmVhbCUyMGRyZWFtfGVufDB8fHx8MTc1ODk3MzI2N3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "ethereal dream"
+    },
+    {
+      "id": "film-project-1-still-1",
+      "description": "Still image 1 from 'Ethereal Dreams'",
+      "imageUrl": "https://images.unsplash.com/photo-1741367815617-e9588cb2088c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxjaW5lbWF0aWMlMjBzdGlsbHxlbnwwfHx8fDE3NTg5NzMyNjd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "cinematic still"
+    },
+    {
+      "id": "film-project-1-still-2",
+      "description": "Still image 2 from 'Ethereal Dreams'",
+      "imageUrl": "https://images.unsplash.com/photo-1702557284144-65456839581c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8ZHJhbWF0aWMlMjBsaWdodGluZ3xlbnwwfHx8fDE3NTg5NzMyNjd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "dramatic lighting"
+    },
+    {
+      "id": "color-grading-1-before",
+      "description": "Before color grading for 'Oceanic Hues'",
+      "imageUrl": "https://images.unsplash.com/photo-1596972811652-11d30aa10342?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxyYXclMjBmb290YWdlfGVufDB8fHx8MTc1ODk3MzI2N3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "raw footage"
+    },
+    {
+      "id": "color-grading-1-after",
+      "description": "After color grading for 'Oceanic Hues'",
+      "imageUrl": "https://images.unsplash.com/photo-1553251317-6c87c2eb3236?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxjb2xvciUyMGdyYWRlZHxlbnwwfHx8fDE3NTg5NzMyNjd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "color graded"
+    },
+    {
+      "id": "film-project-2-thumb",
+      "description": "Thumbnail for film project 'Concrete Jungle'",
+      "imageUrl": "https://images.unsplash.com/photo-1529619768328-e37af76c6fe5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxjaXR5JTIwbmlnaHR8ZW58MHx8fHwxNzU4OTE1NjE2fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "city night"
+    },
+    {
+      "id": "film-project-2-still-1",
+      "description": "Still from 'Concrete Jungle'",
+      "imageUrl": "https://images.unsplash.com/photo-1574617935024-dc0b10bd3cee?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHx1cmJhbiUyMGxhbmRzY2FwZXxlbnwwfHx8fDE3NTg5NzMyNjd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "urban landscape"
+    },
+    {
+      "id": "photo-1",
+      "description": "A landscape photograph.",
+      "imageUrl": "https://images.unsplash.com/photo-1601281426795-9fedf41df8d1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxtb3VudGFpbiUyMGxhbmRzY2FwZXxlbnwwfHx8fDE3NTg5MTAzNDB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "mountain landscape"
+    },
+    {
+      "id": "photo-2",
+      "description": "A portrait photograph.",
+      "imageUrl": "https://images.unsplash.com/photo-1634735604756-f9b92266393d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxkcmFtYXRpYyUyMHBvcnRyYWl0fGVufDB8fHx8MTc1ODk3MzI2N3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "dramatic portrait"
+    },
+    {
+      "id": "photo-3",
+      "description": "An abstract photograph.",
+      "imageUrl": "https://images.unsplash.com/photo-1708379583032-8dd13b3779a8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxhYnN0cmFjdCUyMHRleHR1cmV8ZW58MHx8fHwxNzU4OTA5MTUzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "abstract texture"
+    },
+    {
+      "id": "photo-4",
+      "description": "A street photography shot.",
+      "imageUrl": "https://images.unsplash.com/photo-1599557041284-7e2a15610388?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxzdHJlZXQlMjBwaG90b2dyYXBoeXxlbnwwfHx8fDE3NTg5NzMyNjd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "street photography"
+    },
+    {
+      "id": "photo-5",
+      "description": "A nature detail shot.",
+      "imageUrl": "https://images.unsplash.com/photo-1580133318324-f2f76d987dd8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxuYXR1cmUlMjBtYWNyb3xlbnwwfHx8fDE3NTg5NzMyNjd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "nature macro"
+    }
+  ]
 }
