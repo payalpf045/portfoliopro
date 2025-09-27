@@ -74,6 +74,9 @@ export default function BeforeAfterSlider({ beforeImage, afterImage }: BeforeAft
         className="object-contain pointer-events-none"
         priority
       />
+      <div className="absolute top-2 left-2 z-10 rounded-sm bg-black/50 px-2 py-1 text-xs font-semibold text-white pointer-events-none">
+        Before
+      </div>
       <div
         className="absolute top-0 left-0 h-full w-full pointer-events-none"
         style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
@@ -85,6 +88,9 @@ export default function BeforeAfterSlider({ beforeImage, afterImage }: BeforeAft
           className="object-contain pointer-events-none"
           priority
         />
+        <div className="absolute top-2 right-2 z-10 rounded-sm bg-black/50 px-2 py-1 text-xs font-semibold text-white pointer-events-none">
+          After
+        </div>
       </div>
       <div
         className="absolute top-0 bottom-0 w-1 bg-primary/80 pointer-events-none"
