@@ -105,7 +105,7 @@ export default function ProjectForm({ project }: ProjectFormProps) {
             <div className="space-y-6">
               <div className="space-y-2">
                 <Label htmlFor="youtubeVideoId">YouTube Video ID</Label>
-                <Input id="youtubeVideoId" name="youtubeVideoId" defaultValue={project?.youtubeVideoId} />
+                <Input id="youtubeVideoId" name="youtubeVideoId" defaultValue={project?.youtubeVideoId || ''} />
               </div>
               
               <div className="space-y-4 rounded-lg border p-4">

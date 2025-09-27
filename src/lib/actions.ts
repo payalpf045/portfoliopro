@@ -51,7 +51,7 @@ const fileSchema = z
 
 const filmSchema = baseProjectSchema.extend({
   category: z.literal('Film'),
-  youtubeVideoId: z.string().min(1, 'YouTube Video ID is required.'),
+  youtubeVideoId: z.string().optional(),
   stills: z.array(z.string()).optional(),
 });
 
@@ -82,7 +82,7 @@ async function saveFilmProject(formData: FormData) {
     description: formData.get('description'),
     date: formData.get('date'),
     category: 'Film',
-    youtubeVideoId: formData.get('youtubeVideoId'),
+    youtubeVideoId: formData.get('youtubeVideoId') || undefined,
   });
 
   if (!validatedFields.success) {
