@@ -29,13 +29,15 @@ export default async function ProjectPage({ params }: { params: { id: string } }
           </div>
         )}
 
-        <div className="text-center mb-12">
+        {project.category !== 'Color Grading' && (
+          <div className="text-center mb-12">
             <h1 className="text-4xl md:text-5xl font-headline font-semibold mb-4">{project.title}</h1>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">{project.description}</p>
-        </div>
+          </div>
+        )}
         
         {project.category === 'Color Grading' && project.beforeImageUrl && project.afterImageUrl && (
-          <div className="mb-12">
+          <div className="my-12">
             <BeforeAfterSlider
               beforeImage={project.beforeImageUrl}
               afterImage={project.afterImageUrl}
