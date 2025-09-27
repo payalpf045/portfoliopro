@@ -4,10 +4,11 @@ import { Suspense } from 'react';
 import { Skeleton } from '@/components/ui/skeleton';
 
 function PhotographyGridSkeleton() {
+  const heights = [250, 320, 280, 350, 220, 380, 300, 260];
   return (
     <div className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
-      {Array.from({ length: 8 }).map((_, i) => (
-        <Skeleton key={i} className="h-64 w-full rounded-lg" style={{ height: `${Math.floor(Math.random() * (400 - 200 + 1)) + 200}px` }}/>
+      {heights.map((height, i) => (
+        <Skeleton key={i} className="h-64 w-full rounded-lg" style={{ height: `${height}px` }}/>
       ))}
     </div>
   );
