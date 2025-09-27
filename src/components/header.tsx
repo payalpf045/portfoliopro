@@ -38,7 +38,7 @@ export function Header() {
       <div className="container flex h-14 items-center">
         {/* Desktop Header */}
         <div className="hidden md:flex w-full items-center justify-between">
-            <Link href="/" className="flex items-center space-x-2">
+            <Link href="/" className="flex items-center space-x-2 w-48">
                 <span className="font-headline text-lg font-semibold text-primary">
                 PAYAL
                 </span>
@@ -51,7 +51,7 @@ export function Header() {
             </nav>
             
             {/* This empty div is for spacing, to keep the nav centered */}
-            <div className="w-fit" style={{minWidth: '60px'}}></div>
+            <div className="w-48"></div>
         </div>
 
         {/* Mobile Header */}
