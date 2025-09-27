@@ -37,7 +37,7 @@ export function Header() {
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-14 items-center">
         {/* Desktop Header */}
-        <div className="hidden flex-1 md:flex items-center justify-between">
+        <div className="hidden md:flex w-full items-center justify-between">
             <Link href="/" className="flex items-center space-x-2">
                 <span className="font-headline text-lg font-semibold text-primary">
                 PAYAL
@@ -51,7 +51,7 @@ export function Header() {
             </nav>
             
             {/* This empty div is for spacing, to keep the nav centered */}
-            <div className="w-fit"></div>
+            <div className="w-fit" style={{minWidth: '60px'}}></div>
         </div>
 
         {/* Mobile Header */}
