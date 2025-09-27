@@ -1,6 +1,6 @@
 'use client';
 
-import { useFormState } from 'react-dom';
+import { useActionState } from 'react';
 import Image from 'next/image';
 import { savePhotographyImage, deletePhotographyImage } from '@/lib/actions';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -25,7 +25,7 @@ function UploadButton() {
 }
 
 export default function PhotographyAdmin({ images }: { images: PhotographyImage[] }) {
-  const [state, formAction] = useFormState(savePhotographyImage, initialState);
+  const [state, formAction] = useActionState(savePhotographyImage, initialState);
   const formRef = useRef<HTMLFormElement>(null);
   const { toast } = useToast();
   

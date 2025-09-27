@@ -1,7 +1,6 @@
 'use client';
 
-import { useState, useTransition, useEffect } from 'react';
-import { useFormState } from 'react-dom';
+import { useState, useTransition, useEffect, useActionState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useToast } from '@/hooks/use-toast';
 import { Project } from '@/lib/definitions';
@@ -27,7 +26,7 @@ const initialState = {
 };
 
 export default function ProjectForm({ project }: ProjectFormProps) {
-  const [state, formAction] = useFormState(saveProject, initialState);
+  const [state, formAction] = useActionState(saveProject, initialState);
   const [category, setCategory] = useState<string>(project?.category || 'Film');
   const [thumbnailPreview, setThumbnailPreview] = useState<string | null>(project?.thumbnail || null);
   const [hiddenThumbnail, setHiddenThumbnail] = useState<string>(project?.thumbnail || '');
