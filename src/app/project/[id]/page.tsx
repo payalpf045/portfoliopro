@@ -15,11 +15,11 @@ export default async function ProjectPage({ params }: { params: { id: string } }
       <div className="max-w-5xl mx-auto">
 
         {project.category === 'Film' && project.youtubeVideoId && (
-          <div className="mb-12">
+          <div className="mb-12 max-w-4xl mx-auto">
             <div className="aspect-video">
               <iframe
                 className="w-full h-full rounded-lg"
-                src={`https://www.youtube.com/embed/${project.youtubeVideoId}`}
+                src={`https://www.youtube.com/embed/${project.youtubeVideoId}?rel=0`}
                 title="YouTube video player"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -46,7 +46,7 @@ export default async function ProjectPage({ params }: { params: { id: string } }
         {project.category === 'Film' && project.stills && project.stills.length > 0 && (
           <div className="text-center">
             <h2 className="text-3xl font-headline mb-8">Stills Gallery</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {project.stills.map((still, index) => (
                 <div key={index} className="overflow-hidden rounded-lg">
                   <Image
