@@ -12,13 +12,18 @@ export function Footer() {
   return (
     <>
       <footer className="border-t border-border/40">
-        <div className="container flex items-center justify-between py-10 md:h-24">
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <Button variant="ghost" size="icon" className="h-6 w-6" onClick={() => setIsLoginOpen(true)}>
-              <Copyright className="h-4 w-4" />
-              <span className="sr-only">Admin Login</span>
-            </Button>
-            <span>© {new Date().getFullYear()} PAYAL. All Rights Reserved.</span>
+        <div className="container flex items-start justify-between py-10 md:h-24 md:items-center">
+          <div>
+            <span className="font-headline text-lg font-semibold text-primary">
+              PAYAL
+            </span>
+            <div className="flex items-center gap-2 text-sm text-muted-foreground mt-1">
+              <Button variant="ghost" size="icon" className="h-6 w-6" onClick={() => setIsLoginOpen(true)}>
+                <Copyright className="h-4 w-4" />
+                <span className="sr-only">Admin Login</span>
+              </Button>
+              <span>© {new Date().getFullYear()}. All Rights Reserved.</span>
+            </div>
           </div>
           <div className="flex items-center gap-2">
             <Link href="mailto:hello@payal.art" target="_blank" rel="noreferrer">
