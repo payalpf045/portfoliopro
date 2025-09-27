@@ -38,7 +38,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               {project.category}
             </Badge>
           </div>
-          <CardDescription className="line-clamp-3 text-base text-muted-foreground">{project.description}</CardDescription>
+          <CardDescription className="line-clamp-2 text-base text-muted-foreground">{project.description}</CardDescription>
         </CardContent>
       </Card>
     </Link>
