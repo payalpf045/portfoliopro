@@ -1,3 +1,5 @@
+'use client';
+
 // This is a simple, non-production-ready auth mechanism for the admin panel.
 // It relies on client-side sessionStorage.
 
@@ -5,8 +7,7 @@ const AUTH_KEY = 'payal-admin-auth';
 
 export const checkPassword = (password: string): boolean => {
   // In a real application, this would be a secure, hashed password comparison.
-  // For this project, we use an environment variable.
-  return password === (process.env.NEXT_PUBLIC_ADMIN_PASSWORD || 'admin');
+  return password === 'payal@nita27';
 };
 
 export const setAuthenticated = (): void => {
