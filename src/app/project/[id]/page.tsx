@@ -2,8 +2,6 @@ import { getProjectById } from '@/lib/db';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import BeforeAfterSlider from '@/components/before-after-slider';
-import { Badge } from '@/components/ui/badge';
-import { Film, Droplets } from 'lucide-react';
 
 export default async function ProjectPage({ params }: { params: { id: string } }) {
   const project = await getProjectById(params.id);
@@ -14,16 +12,7 @@ export default async function ProjectPage({ params }: { params: { id: string } }
 
   return (
     <article className="container mx-auto px-4 py-8">
-      <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl md:text-5xl font-headline font-semibold mb-4">{project.title}</h1>
-        <div className="mb-8">
-            <Badge variant="secondary">
-                {project.category === 'Film' ? <Film className="h-4 w-4 mr-2" /> : <Droplets className="h-4 w-4 mr-2" />}
-                {project.category}
-            </Badge>
-        </div>
-        
-        <p className="text-lg text-muted-foreground mb-8">{project.description}</p>
+      <div className="max-w-5xl mx-auto">
 
         {project.category === 'Film' && project.youtubeVideoId && (
           <div className="mb-12">
@@ -40,6 +29,11 @@ export default async function ProjectPage({ params }: { params: { id: string } }
           </div>
         )}
 
+        <div className="text-center mb-12">
+            <h1 className="text-4xl md:text-5xl font-headline font-semibold mb-4">{project.title}</h1>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">{project.description}</p>
+        </div>
+        
         {project.category === 'Color Grading' && project.beforeImageUrl && project.afterImageUrl && (
           <div className="mb-12">
             <BeforeAfterSlider
@@ -50,17 +44,17 @@ export default async function ProjectPage({ params }: { params: { id: string } }
         )}
 
         {project.category === 'Film' && project.stills && project.stills.length > 0 && (
-          <div>
-            <h2 className="text-3xl font-headline mb-6">Stills</h2>
-            <div className="grid grid-cols-1 gap-6">
+          <div className="text-center">
+            <h2 className="text-3xl font-headline mb-8">Stills Gallery</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {project.stills.map((still, index) => (
-                <div key={index} className="aspect-video overflow-hidden rounded-lg">
+                <div key={index} className="overflow-hidden rounded-lg">
                   <Image
                     src={still}
                     alt={`${project.title} still ${index + 1}`}
-                    width={1280}
-                    height={720}
-                    className="w-full h-full object-cover"
+                    width={800}
+                    height={450}
+                    className="w-full h-full object-cover aspect-video"
                   />
                 </div>
               ))}
