@@ -19,7 +19,7 @@ export default function PhotographyGrid({ images }: PhotographyGridProps) {
   return (
     <>
       <div className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
-        {images.map((image) => (
+        {images.map((image, index) => (
           <div key={image.id} className="break-inside-avoid cursor-pointer" onClick={() => setSelectedImage(image)}>
             <Image
               src={image.url}
@@ -28,6 +28,7 @@ export default function PhotographyGrid({ images }: PhotographyGridProps) {
               height={1200}
               className="w-full h-auto object-cover rounded-lg transition-opacity hover:opacity-80"
               sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
+              priority={index < 8}
             />
           </div>
         ))}
