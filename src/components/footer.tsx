@@ -31,19 +31,19 @@ export function Footer() {
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <Link href="mailto:hello@payal.art" target="_blank" rel="noreferrer">
+            <Link href="mailto:payalfaujdar045@gmail.com" target="_blank" rel="noreferrer">
               <Button variant="ghost" size="icon">
                 <Mail className="h-5 w-5 text-muted-foreground" />
                 <span className="sr-only">Mail</span>
               </Button>
             </Link>
-            <Link href="https://www.instagram.com" target="_blank" rel="noreferrer">
+            <Link href="https://www.instagram.com/payal_1x1/" target="_blank" rel="noreferrer">
               <Button variant="ghost" size="icon">
                 <Instagram className="h-5 w-5 text-muted-foreground" />
                 <span className="sr-only">Instagram</span>
               </Button>
             </Link>
-            <Link href="https://discord.com" target="_blank" rel="noreferrer">
+            <Link href="https://discord.com/users/payal0614" target="_blank" rel="noreferrer">
               <Button variant="ghost" size="icon">
                 <GitMerge className="h-5 w-5 text-muted-foreground" />
                 <span className="sr-only">Discord</span>
